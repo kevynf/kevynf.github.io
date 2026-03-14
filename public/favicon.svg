@@ -1,4 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-	<rect width="64" height="64" rx="14" fill="#0F172A" />
-	<text x="50%" y="52%" text-anchor="middle" dominant-baseline="middle" fill="#F8FAFC" font-size="26" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-weight="700" letter-spacing="1">LF</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="171.755 176.022 256 256">
+    <rect x="171.755" y="176.022" width="256" height="256" rx="48" fill="#2ea043" />
+    <g transform="translate(299.755 304.022) scale(0.86) translate(-299.755 -304.022)">
+        <path fill="#FFF"
+            d="M179.42 212.23H201.89V302.46L254.53 212.23H280.54L241.22 279.65L272.94 336.05A73.179 73.179 0 0 0 392.9 347.06H420.09A95.651 95.651 0 0 1 253.36 347.06L228.09 302.15L201.89 347.06H179.42V212.23" />
+
+        <g transform="translate(673.44,0) scale(-1,1)">
+            <path fill="#FFF"
+                d="M286.16 212.23V347.06H387.28V324.59H308.63V290.88H376.05V268.41H308.63V234.7H387.28V212.23H286.16" />
+        </g>
+    </g>
 </svg>
