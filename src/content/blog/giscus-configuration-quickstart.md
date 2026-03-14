@@ -2,8 +2,8 @@
 title: Giscus 配置速览：5 步启用评论系统
 description: 用最短路径完成 Giscus 从仓库到站点的配置，并映射到 LogFlow Theme。
 pubDate: 2026-03-14
-collection: Template Guide
-collectionDescription: 面向二次开发者的配置与组件说明
+collection: LogFlow Theme
+collectionDescription: LogFlow Theme 主题设计、实现与迭代实践
 tags:
   - Giscus
   - Comments

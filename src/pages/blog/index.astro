@@ -76,6 +76,7 @@ const sidebarTags = Array.from(tagMap.entries())
 				font-size: 1.15rem;
 				margin: 0;
 				line-height: 1.2;
+				color: rgb(var(--black));
 			}
 			.list-head p {
 				margin: 0;
@@ -112,10 +113,10 @@ const sidebarTags = Array.from(tagMap.entries())
 				gap: 0.34rem;
 			}
 			.post-head {
-				display: flex;
-				justify-content: space-between;
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) auto;
 				align-items: baseline;
-				gap: 0.8rem;
+				column-gap: 0.6rem;
 			}
 			.post-meta {
 				display: flex;
@@ -133,11 +134,14 @@ const sidebarTags = Array.from(tagMap.entries())
 				line-height: 1.35;
 				margin: 0;
 				min-width: 0;
+				white-space: normal;
+				overflow-wrap: anywhere;
 			}
 			.post-date {
 				font-size: 0.9em;
 				color: rgb(var(--gray));
 				white-space: nowrap;
+				flex-shrink: 0;
 			}
 			.post-desc {
 				margin: 0;

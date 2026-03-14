@@ -2,8 +2,8 @@
 title: consts.ts 配置总览：全部参数与可选值说明
 description: 面向模板使用者的 consts.ts 全量配置参考，覆盖默认值、用途与可选配置建议。
 pubDate: 2026-03-14
-collection: Template Guide
-collectionDescription: 面向二次开发者的配置与组件说明
+collection: LogFlow Theme
+collectionDescription: LogFlow Theme 主题设计、实现与迭代实践
 tags:
   - Astro
   - Config

@@ -2,8 +2,8 @@
 title: 自定义组件手册：功能、用法与 consts.ts 配置
 description: 逐个说明 LogFlow Theme 自定义组件的职责、调用方式、关联配置与可选参数。
 pubDate: 2026-03-14
-collection: Template Guide
-collectionDescription: 面向二次开发者的配置与组件说明
+collection: LogFlow Theme
+collectionDescription: LogFlow Theme 主题设计、实现与迭代实践
 tags:
   - Astro
   - Components

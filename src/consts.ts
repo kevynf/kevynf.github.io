@@ -6,6 +6,9 @@ export const SITE_TITLE = 'K3vynf\'s Blog';
 // 建议控制在 120~160 字符以内。
 export const SITE_DESCRIPTION = 'Welcome to my Blog!';
 
+// 站点正式 URL，用于 sitemap、RSS 等绝对链接生成。
+export const SITE_URL = 'https://kevynf.github.io';
+
 // 页脚版权名称。
 // 一般填写个人名、团队名或品牌名。
 export const COPYRIGHT_NAME = 'K3vynf';
@@ -30,26 +33,7 @@ export const SOCIAL_LINKS = [
 
 // Friends 页面友链数据。
 // avatar 可为空字符串，description 建议一句话简介。
-export const FRIEND_LINKS = [
-	{
-		name: 'Astro',
-		url: 'https://astro.build/',
-		avatar: 'https://astro.build/favicon.svg',
-		description: '现代静态站点框架，内容驱动体验非常优秀。',
-	},
-	{
-		name: 'Vercel',
-		url: 'https://vercel.com/',
-		avatar: 'https://vercel.com/favicon.ico',
-		description: '前端部署平台，适合快速发布与持续迭代。',
-	},
-	{
-		name: 'GitHub',
-		url: 'https://github.com/',
-		avatar: 'https://github.githubassets.com/favicons/favicon.svg',
-		description: '开源协作平台，代码托管与协同开发基础设施。',
-	},
-];
+export { FRIEND_LINKS } from './config/friend-links';
 
 // 首页 GitHub 贡献图配置。
 export const GH_CONTRIBUTE = {
@@ -82,7 +66,7 @@ export const HOME_PROFILE = {
 	// 是否将标语使用斜体样式。
 	taglineItalic: false,
 	// 首页主内容区左右列宽比例。
-	homePostsColumnRatio: '1fr',
+	homePostsColumnRatio: '1.5fr',
 	// 标签云区域最小宽度。
 	homeTagsMinWidth: '300px',
 	// 首页 About 摘要最大截断长度。

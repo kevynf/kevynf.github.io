@@ -3,9 +3,14 @@ import BaseHead from '../components/BaseHead.astro';
 import CommentSection from '../components/CommentSection.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { FRIEND_LINKS, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { FRIEND_LINKS, HOME_PROFILE, SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '../consts';
 
 const pageTitle = `Friends | ${SITE_TITLE}`;
+const ownFriendLinkText = `Name: ${SITE_TITLE}
+Desc: ${HOME_PROFILE.tagline}
+Link: ${SITE_URL}
+Avatar: ${HOME_PROFILE.avatarSrc}
+RSS: ${SITE_URL}/rss.xml`;
 ---
 
 <!doctype html>
@@ -17,13 +22,16 @@ const pageTitle = `Friends | ${SITE_TITLE}`;
 		<Header />
 		<main>
 			<section class="friends-page">
-				<h1>友链</h1>
+				<div class="title-row">
+					<h1>友链</h1>
+					<button class="copy-link-btn" type="button" data-copy-text={ownFriendLinkText}>复制本站友链信息</button>
+				</div>
 				<p class="summary">欢迎交换友链，也欢迎在评论区留言你的站点信息。</p>
 				<ul class="friends-list">
 					{
 						FRIEND_LINKS.map((link) => (
 							<li>
-								<a href={link.url} target="_blank" rel="noopener noreferrer">
+								<a href={link.link ?? link.url} target="_blank" rel="noopener noreferrer">
 									{
 										link.avatar && (
 											<img class="avatar" src={link.avatar} alt={`${link.name} avatar`} loading="lazy" />
@@ -31,7 +39,16 @@ const pageTitle = `Friends | ${SITE_TITLE}`;
 									}
 									<span class="content">
 										<span class="name">{link.name}</span>
-										<span class="desc">{link.description}</span>
+										<span class="desc">{link.desc ?? link.description}</span>
+										{
+											link.rss && (
+												<span class="rss-row">
+													<a class="rss-link" href={link.rss} target="_blank" rel="noopener noreferrer">
+														RSS
+													</a>
+												</span>
+											)
+										}
 									</span>
 								</a>
 							</li>
@@ -42,19 +59,63 @@ const pageTitle = `Friends | ${SITE_TITLE}`;
 			</section>
 		</main>
 		<Footer />
+		<script is:inline>
+			const copyBtn = document.querySelector('.copy-link-btn');
+			if (copyBtn) {
+				const originalText = copyBtn.textContent;
+				copyBtn.addEventListener('click', async () => {
+					const text = copyBtn.getAttribute('data-copy-text') ?? '';
+					try {
+						await navigator.clipboard.writeText(text);
+						copyBtn.textContent = '已复制';
+						setTimeout(() => {
+							copyBtn.textContent = originalText;
+						}, 1600);
+					} catch {
+						copyBtn.textContent = '复制失败';
+						setTimeout(() => {
+							copyBtn.textContent = originalText;
+						}, 1600);
+					}
+				});
+			}
+		</script>
 	</body>
 </html>
 
 <style>
 	.friends-page h1 {
-		margin: 0 0 0.35rem;
+		margin: 0;
 		font-size: 1.25rem;
 		line-height: 1.2;
+	}
+	.title-row {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.75rem;
+		margin: 0 0 0.35rem;
 	}
 	.summary {
 		margin: 0 0 0.9rem;
 		font-size: 1em;
 		color: rgb(var(--gray));
+	}
+	.copy-link-btn {
+		padding: 0;
+		border: 0;
+		background: transparent;
+		color: var(--accent);
+		font: inherit;
+		font-size: 1em;
+		font-weight: 600;
+		line-height: 1.35;
+		text-decoration: none;
+		cursor: pointer;
+		white-space: nowrap;
+	}
+	.copy-link-btn:hover {
+		text-decoration: underline;
 	}
 	.friends-list {
 		list-style: none;
@@ -99,5 +160,14 @@ const pageTitle = `Friends | ${SITE_TITLE}`;
 		font-size: 0.92em;
 		line-height: 1.45;
 		color: rgb(var(--gray));
+	}
+	.rss-row {
+		display: block;
+		line-height: 1;
+	}
+	.rss-link {
+		font-size: 0.82em;
+		font-weight: 600;
+		text-decoration: none;
 	}
 </style>

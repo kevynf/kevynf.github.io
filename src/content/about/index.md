@@ -1,31 +1,30 @@
 ---
 title: About
-description: LogFlow Theme 模板亮点与上手路径
+description: 关于
 ---
+## 简介
 
-LogFlow Theme 是一个面向内容发布的 Astro 博客模板，适合用作个人博客、项目文档站或内容品牌站点的起点。
+学生 西安交通大学 计算机科学与技术专业 在读
 
-## 模板亮点
+## 支持
 
-- 开箱即用的内容结构：文章、标签、合集、年份归档完整闭环
-- 配置集中在 `src/consts.ts`：站点信息、首页卡片、评论与社交一处维护
-- 文档示例齐全：组件说明、Giscus、Frontmatter、MDX 样式均有可直接参考文章
-- 评论系统可渐进启用：默认关闭，填入参数后即可启用 Giscus
-- 主题体验完整：亮暗模式切换 + GitHub 贡献图展示
+如果你觉得本站内容以及 LogFlow Theme 对你有帮助，也可以通过 [GitHub Sponsors](https://github.com/sponsors/kevynf) 页面支持，在该页面还能看到我的更多项目。
 
-## 推荐上手路径
+## RSS
+订阅后可以第一时间收到更新：
 
-1. 在 `src/consts.ts` 中完成站点标题、描述、社交链接与首页信息配置
-2. 在 `src/content/about/index.md` 替换为你的品牌介绍与定位
-3. 在 `src/content/blog/` 中新增或替换 Markdown / MDX 文章
-4. 需要评论时，按示例文章配置 `COMMENTS` 并启用 Giscus
+<a href="/rss.xml" style="display:inline-flex;text-decoration:none;">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/RSS-订阅-238636?style=flat-square&logo=rss&logoColor=white" />
+    <img src="https://img.shields.io/badge/RSS-订阅-0969da?style=flat-square&logo=rss&logoColor=white" alt="RSS 订阅" style="height:22px;width:auto;vertical-align:middle;" />
+  </picture>
+</a>
 
-## 示例内容
+## 版权
 
-模板中已包含可直接参考的示例文章：
+本站代码采用 [MIT License](https://opensource.org/license/mit)；涉及第三方库、字体、图标、图片等内容的版权及许可归其原权利人所有，并以原许可条款为准。本站原创文章内容（除另有声明外）采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 授权；转载或改编时需保留作者署名、原文链接及许可说明，并明确标注是否做过修改，且不得用于商业用途。
 
-- 自定义组件手册：组件职责、用法与配置项说明
-- consts.ts 配置总览：全量参数说明与可选值
-- Frontmatter 使用指南：字段规则、完整示例与排错建议
-- Giscus 配置速览：从仓库到评论可用的最短路径
-- MDX 渲染样式示例：标题、列表、代码块、表格与 JSX 演示
+未经授权，请勿将本站内容用于侵犯他人著作权、商标权、肖像权或其他合法权益的用途；使用者应自行承担由不当使用产生的法律责任。如你认为本站存在侵权内容，请通过 [GitHub Issues](https://github.com/kevynf/kevynf.github.io/issues) 提交权利通知，我会在核实后尽快处理（删除、修订或补充来源说明）。
+
+<a href="https://opensource.org/license/mit" target="_blank" rel="noopener noreferrer"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Open%20Source%20Initiative%20keyhole.svg" alt="OSI Approved (MIT)" style="height:48px;width:auto;vertical-align:middle;" /></a>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" alt="Creative Commons BY-NC-SA 4.0" style="height:48px;width:auto;vertical-align:middle;" /></a>

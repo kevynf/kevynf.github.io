@@ -137,17 +137,21 @@ const contentStyle = `--home-posts-column: ${HOME_PROFILE.homePostsColumnRatio ?
 				gap: 0.6rem;
 			}
 			.recent-list li {
-				display: flex;
-				justify-content: space-between;
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) auto;
 				align-items: baseline;
-				gap: 0.8rem;
+				column-gap: 0.65rem;
 			}
 			.recent-list a {
 				text-decoration: none;
 				font-weight: 600;
 				font-size: 1em;
+				color: rgb(var(--black));
 				min-width: 0;
 				display: block;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
 			}
 			.recent-list time {
 				font-size: 0.92em;

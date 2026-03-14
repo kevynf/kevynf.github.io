@@ -2,8 +2,8 @@
 title: Frontmatter 使用指南：写好每篇文章的元信息
 description: 介绍 LogFlow Theme 中 Frontmatter 的必填字段、可选字段、常见写法与排错方式。
 pubDate: 2026-03-14
-collection: Template Guide
-collectionDescription: 面向二次开发者的配置与组件说明
+collection: LogFlow Theme
+collectionDescription: LogFlow Theme 主题设计、实现与迭代实践
 tags:
   - Astro
   - Frontmatter
@@ -37,8 +37,8 @@ title: Frontmatter 使用实践
 description: 包含必填与可选字段的完整示例。
 pubDate: 2026-03-14
 updatedDate: 2026-03-15
-collection: Template Guide
-collectionDescription: 面向二次开发者的配置与组件说明
+collection: LogFlow Theme
+collectionDescription: LogFlow Theme 主题设计、实现与迭代实践
 tags:
   - Astro
   - Frontmatter
