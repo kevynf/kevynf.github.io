@@ -105,6 +105,20 @@ const themeDark = COMMENTS.themeDark ?? 'dark';
 		margin-top: 2rem;
 		padding-top: 1rem;
 		border-top: var(--section-divider-width) solid var(--section-divider-color);
+		width: 100%;
+		min-width: 0;
+		overflow-x: clip;
+	}
+	:global(.comments .giscus) {
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+	}
+	:global(.comments iframe.giscus-frame) {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
 	}
 	.comments h2 {
 		margin: 0 0 0.75rem;

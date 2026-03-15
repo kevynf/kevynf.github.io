@@ -63,7 +63,7 @@ const builtAtFull = `${builtAtShort} UTC+08:00 (Asia/Shanghai)`;
 
   .footer-inner {
     --surface-strip-pad-y: 0.6rem;
-    --surface-strip-pad-x: 1rem;
+    --surface-strip-pad-x: var(--surface-inline-padding);
     --surface-strip-pad-bottom-extra: 0px;
     --surface-strip-border-top: 1px solid var(--glass-border);
     --surface-strip-border-bottom: 0;
@@ -129,7 +129,6 @@ const builtAtFull = `${builtAtShort} UTC+08:00 (Asia/Shanghai)`;
 
     .footer-inner {
       --surface-strip-pad-y: 0.5rem;
-      --surface-strip-pad-x: 0.75rem;
       grid-template-columns: 1fr;
     }
     .build-info {

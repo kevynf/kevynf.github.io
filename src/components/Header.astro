@@ -33,7 +33,7 @@ import ThemeToggle from "./ThemeToggle.astro";
   .header-inner {
     --header-active-color: var(--accent);
     --surface-strip-pad-y: 0.6rem;
-    --surface-strip-pad-x: 1rem;
+    --surface-strip-pad-x: var(--surface-inline-padding);
     --surface-strip-pad-bottom-extra: 0px;
     --surface-strip-border-top: 0;
     --surface-strip-border-bottom: 1px solid var(--glass-border);
@@ -88,7 +88,6 @@ import ThemeToggle from "./ThemeToggle.astro";
   @media (max-width: 860px) {
     .header-inner {
       --surface-strip-pad-y: 0.5rem;
-      --surface-strip-pad-x: 0.75rem;
       flex-wrap: wrap;
       row-gap: 0.55rem;
     }

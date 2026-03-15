@@ -24,10 +24,19 @@ const {
 <SiteLayout title={title} description={description} lang="en">
   <Fragment slot="head">
     <style>
-      main {
-        width: calc(100% - 2em);
+      :global(body) {
+        overflow-x: clip;
+      }
+      :global(main) {
+        width: 100%;
         max-width: 100%;
         margin: 0;
+        padding: 0;
+        overflow-x: clip;
+      }
+      article {
+        width: 100%;
+        min-width: 0;
       }
       .hero-image {
         width: 100%;
@@ -40,9 +49,13 @@ const {
       }
       .prose {
         width: var(--page-max-width);
-        max-width: calc(100% - 2em);
+        max-width: calc(
+          100% - var(--surface-inline-padding) - var(--surface-inline-padding)
+        );
         margin: auto;
-        padding: 0.75em;
+        padding: 0.75em 0;
+        min-width: 0;
+        overflow-x: clip;
         color: rgb(var(--gray-dark));
       }
       .title {
