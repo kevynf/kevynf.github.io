@@ -2,23 +2,31 @@
 title: About
 description: 关于
 ---
+
 ## 简介
 
 学生 西安交通大学 计算机科学与技术专业 在读
+
+---
 
 ## 支持
 
 如果你觉得本站内容以及 LogFlow Theme 对你有帮助，也可以通过 [GitHub Sponsors](https://github.com/sponsors/kevynf) 页面支持，在该页面还能看到我的更多项目。
 
-## RSS
-订阅后可以第一时间收到更新：
+---
 
+## RSS
+
+订阅后可以第一时间收到更新：
 <a href="/rss.xml" style="display:inline-flex;text-decoration:none;">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/RSS-订阅-238636?style=flat-square&logo=rss&logoColor=white" />
-    <img src="https://img.shields.io/badge/RSS-订阅-0969da?style=flat-square&logo=rss&logoColor=white" alt="RSS 订阅" style="height:22px;width:auto;vertical-align:middle;" />
-  </picture>
+<picture>
+
+<source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/RSS-订阅-238636?style=flat-square&logo=rss&logoColor=white" />
+<img src="https://img.shields.io/badge/RSS-订阅-0969da?style=flat-square&logo=rss&logoColor=white" alt="RSS 订阅" style="height:22px;width:auto;vertical-align:middle;" />
+</picture>
 </a>
+
+---
 
 ## 版权
 

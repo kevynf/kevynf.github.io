@@ -1,0 +1,116 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+
+type Props = {
+  title: string;
+  description: string;
+  lang?: string;
+};
+
+const { title, description, lang = "zh-CN" } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <BaseHead title={title} description={description} />
+    <slot name="head" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <script is:inline>
+      (() => {
+        const STORE_KEY = "__surfaceStripSyncController";
+        const prev = window[STORE_KEY];
+        if (prev && typeof prev.dispose === "function") {
+          prev.dispose();
+        }
+
+        const root = document.documentElement;
+        const MIN_HEIGHT = 52;
+        const JITTER_EPSILON = 1;
+        let resizeObserver;
+        let rafId = 0;
+        let lastApplied = 0;
+
+        const getStrips = () =>
+          Array.from(document.querySelectorAll(".ui-acrylic-strip"));
+
+        const measureAndApply = () => {
+          const strips = getStrips();
+          if (strips.length < 2) {
+            root.style.removeProperty("--surface-strip-sync-height");
+            lastApplied = 0;
+            return;
+          }
+
+          let maxHeight = MIN_HEIGHT;
+          for (const el of strips) {
+            maxHeight = Math.max(maxHeight, el.getBoundingClientRect().height);
+          }
+
+          const next = Math.ceil(maxHeight);
+          if (Math.abs(next - lastApplied) <= JITTER_EPSILON) {
+            return;
+          }
+
+          lastApplied = next;
+          root.style.setProperty("--surface-strip-sync-height", `${next}px`);
+        };
+
+        const scheduleSync = () => {
+          if (rafId) {
+            return;
+          }
+          rafId = requestAnimationFrame(() => {
+            rafId = 0;
+            measureAndApply();
+          });
+        };
+
+        const connectObservers = () => {
+          resizeObserver?.disconnect();
+          resizeObserver = new ResizeObserver(() => {
+            scheduleSync();
+          });
+
+          getStrips().forEach((el) => {
+            resizeObserver.observe(el);
+          });
+        };
+
+        const onResize = () => scheduleSync();
+        const onPageLoad = () => {
+          connectObservers();
+          scheduleSync();
+        };
+
+        window.addEventListener("resize", onResize, { passive: true });
+        window.addEventListener("orientationchange", onResize, {
+          passive: true,
+        });
+        document.addEventListener("astro:page-load", onPageLoad);
+
+        connectObservers();
+        scheduleSync();
+
+        window[STORE_KEY] = {
+          dispose() {
+            cancelAnimationFrame(rafId);
+            rafId = 0;
+            resizeObserver?.disconnect();
+            window.removeEventListener("resize", onResize);
+            window.removeEventListener("orientationchange", onResize);
+            document.removeEventListener("astro:page-load", onPageLoad);
+          },
+        };
+      })();
+    </script>
+  </body>
+</html>
