@@ -52,6 +52,18 @@ html.dark {
   --glass-border: rgba(255, 255, 255, 0.1);
 }
 
+html {
+  /* Reserve scrollbar space to avoid width shifts across route changes. */
+  overflow-y: scroll;
+}
+
+@supports (scrollbar-gutter: stable) {
+  html {
+    overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
+  }
+}
+
 .ui-surface-shell {
   width: 100%;
   max-width: 100%;
