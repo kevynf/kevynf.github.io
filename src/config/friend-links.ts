@@ -5,7 +5,6 @@ export interface FriendLink {
   avatar?: string;
   desc?: string;
   description?: string;
-  rss?: string;
 }
 
 export const FRIEND_LINKS: FriendLink[] = [
@@ -14,5 +13,11 @@ export const FRIEND_LINKS: FriendLink[] = [
     desc: "一只可爱小猫",
     link: "https://axi404.top",
     avatar: "https://axi404.top/avatar/avatar.png",
+  },
+  {
+    name: "Danny's Blog",
+    desc: "Cogito, ergo sum.",
+    link: "https://dannyshi.pages.dev/",
+    avatar: "https://dannyshi.pages.dev/head.jpg",
   },
 ];

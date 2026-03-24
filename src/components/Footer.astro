@@ -24,12 +24,8 @@ const builtAtShort = `${builtAtParts.year}-${builtAtParts.month}-${builtAtParts.
 const builtAtFull = `${builtAtShort} UTC+08:00 (Asia/Shanghai)`;
 ---
 
-<div class="site-footer-spacer" aria-hidden="true"></div>
-<footer
-  class="site-footer ui-surface-shell ui-surface-fixed-bottom"
-  role="contentinfo"
->
-  <div class="footer-inner ui-acrylic-strip">
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
     <div class="footer-meta">
       <p class="footer-line">
         <span
@@ -52,22 +48,16 @@ const builtAtFull = `${builtAtShort} UTC+08:00 (Asia/Shanghai)`;
   </div>
 </footer>
 <style>
-  .site-footer-spacer {
-    height: var(--surface-strip-sync-height, var(--surface-strip-min-height));
-    transition: height 160ms ease;
-  }
-
   .site-footer {
-    z-index: 90;
+    width: var(--page-max-width);
+    max-width: calc(100% - 1em);
+    margin: 0 auto;
+    padding: 0 0.5em 3em;
   }
 
   .footer-inner {
-    --surface-strip-pad-y: 0.6rem;
-    --surface-strip-pad-x: var(--surface-inline-padding);
-    --surface-strip-pad-bottom-extra: 0px;
-    --surface-strip-border-top: 1px solid var(--glass-border);
-    --surface-strip-border-bottom: 0;
-    --surface-strip-shadow: 0 -8px 20px rgba(0, 0, 0, 0.08);
+    border-top: var(--section-divider-width) solid var(--section-divider-color);
+    padding-top: 3em;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     column-gap: var(--section-gap-x);
