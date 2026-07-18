@@ -77,7 +77,7 @@ export const GH_CONTRIBUTE = {
   description: "最近一年的开源贡献记录",
   username: "kevynf",
   profileUrl: "https://github.com/kevynf",
-  errorMessage: "GitHub calendar is temporarily unavailable.",
+  errorMessage: "GitHub 贡献图暂时不可用。",
 } as const;
 
 // 友链数据维护在独立文件中。
