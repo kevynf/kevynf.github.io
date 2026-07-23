@@ -63,7 +63,7 @@ export const SOCIAL_LINKS = [
 // 首页个人信息与内容数量。
 export const HOME = {
   avatar: {
-    src: "https://github.com/kevynf.png?size=256",
+    src: "/avatar.svg",
     alt: "Kevynf Avatar",
   },
   motto: "May the Force be with you.",
@@ -78,6 +78,12 @@ export const GH_CONTRIBUTE = {
   username: "kevynf",
   profileUrl: "https://github.com/kevynf",
   errorMessage: "GitHub 贡献图暂时不可用。",
+} as const;
+
+// 静态文章搜索；关闭后 Header 不渲染搜索入口。
+export const SEARCH = {
+  enabled: true,
+  maxResults: 8,
 } as const;
 
 // 友链数据维护在独立文件中。
