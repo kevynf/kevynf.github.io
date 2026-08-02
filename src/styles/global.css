@@ -1,31 +1,3 @@
-@font-face {
-  font-family:"Site Sans";
-  src:url("../assets/fonts/site-sans-500.woff2") format("woff2");
-  font-style:normal;
-  font-weight:500;
-  font-display:swap;
-}
-@font-face {
-  font-family:"Site Sans";
-  src:url("../assets/fonts/site-sans-700.woff2") format("woff2");
-  font-style:normal;
-  font-weight:700;
-  font-display:swap;
-}
-@font-face {
-  font-family:"Site Serif";
-  src:url("../assets/fonts/site-serif-500.woff2") format("woff2");
-  font-style:normal;
-  font-weight:500;
-  font-display:swap;
-}
-@font-face {
-  font-family:"Site Serif";
-  src:url("../assets/fonts/site-serif-700.woff2") format("woff2");
-  font-style:normal;
-  font-weight:700;
-  font-display:swap;
-}
 :root {
   --page-max-width: 840px;
   --reading-max-width: 720px;
@@ -53,9 +25,8 @@
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-bold: 700;
-  --font-family-text: "Site Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
-  --font-family-serif: "Site Serif", ui-serif, Georgia, Cambria, "Times New Roman", "Songti SC", STSong, SimSun, serif;
-  --font-family-mono: ui-monospace, "Cascadia Mono", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Noto Sans Mono CJK SC", monospace;
+  --font-family-text: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-family-mono: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --line-height-tight: 1.2;
   --line-height-body: 1.7;
   --line-height-heading: 1.3;
@@ -80,8 +51,6 @@ main { width:var(--page-max-width); max-width:calc(100% - 2rem); margin:0 auto; 
 main > section { min-width:0; }
 main > section + section { margin-top:var(--section-gap-y); }
 h1,h2,h3,h4,h5,h6 { margin:0 0 .5rem; color:var(--text-primary); font-family:inherit; font-weight:var(--weight-bold); line-height:var(--line-height-heading); }
-h1,h2,h3,.content-prose h4 { font-family:var(--font-family-serif); }
-:where(.brand,.desktop-nav a,.mobile-nav a,.search-input,.search-results strong,.tag-grid strong,.collection-list strong,.friends-list strong) { font-family:var(--font-family-serif); }
 h1 { font-size:var(--text-2xl); } h2 { font-size:var(--text-xl); } h3 { font-size:var(--text-lg); }
 p { margin:0 0 1rem; }
 a { color:var(--accent); text-underline-offset:.18em; }
