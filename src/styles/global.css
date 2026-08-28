@@ -4,6 +4,8 @@
   --background-body: #fff;
   --background-elevated: #f6f8fa;
   --background-header: rgba(255, 255, 255, .82);
+  --pixel-hero-bg: #fff;
+  --pixel-hero-opacity: .5;
   --text-primary: #1f2328;
   --text-secondary: #4d5761;
   --text-muted: #6e7781;
@@ -37,7 +39,8 @@
   --gap-md-plus: .8rem; --gap-lg: .9rem; --gap-lg-plus: 1rem; --gap-xl: 1.1rem; --gap-2xl: 1.25rem;
 }
 html.dark {
-  --background-body: #151819; --background-elevated: #202428; --background-header: rgba(21,24,25,.84);
+  --background-body: #151819; --background-elevated: #202428;   --background-header: rgba(21,24,25,.84);
+  --pixel-hero-bg: #0a0a0a;
   --text-primary: #e6edf3; --text-secondary: #c2c9d0; --text-muted: #8b949e; --accent: #39d353;
   --black: 230,237,243; --gray: 139,148,158;
   --gray-light: 39,44,49; --gray-dark: 194,201,208;
@@ -172,3 +175,10 @@ html.dark .content-prose .astro-code,html.dark .content-prose .astro-code span {
 @media (max-width:720px) { .blog-layout { grid-template-columns:1fr; } .blog-sidebar { grid-template-columns:repeat(2,minmax(0,1fr)); padding-top:1rem; padding-left:0; } .year-group { grid-template-columns:1fr; gap:.4rem; } }
 @media (max-width:560px) { .friends-list { grid-template-columns:1fr; } .tag-grid { column-count:2; } .blog-sidebar { grid-template-columns:1fr; } .year-group > h2 small { display:inline; margin-left:.4rem; } }
 @media (max-width:360px) { .tag-grid { column-count:1; } }
+
+/* 全站像素流体动画背景（复刻 trae.ai，亮暗主题跟随站点配色，圆点全硬边）
+   画布不设淡入，首绘即最终底色，避免导航期间出现静止期；
+   --pixel-hero-opacity 只弱化圆点（画布底色与页面底色一致，透明度不影响背景色） */
+.pixel-hero-canvas { position:fixed; top:0; left:0; z-index:-1; width:100vw; height:100vh; padding:0; border:0; border-radius:0; background:var(--pixel-hero-bg); opacity:var(--pixel-hero-opacity); pointer-events:none; }
+html:has(.pixel-hero-canvas),body:has(.pixel-hero-canvas) { background:var(--pixel-hero-bg); }
+body:has(.pixel-hero-canvas) { isolation:isolate; }

@@ -80,7 +80,35 @@ const indexUrl = withBase("/search-index.json");
     }
   };
 
-  document.querySelectorAll<HTMLElement>("[data-search]").forEach((root) => {
+  // 搜索索引缓存保留在模块级，跨页复用；
+  // DOM 监听随换页重建，document 级监听通过 AbortController 清理旧实例
+  let items: PreparedSearchIndexItem[] | null = null;
+  let loadPromise: Promise<PreparedSearchIndexItem[]> | null = null;
+  let searchAbort: AbortController | null = null;
+
+  const loadIndex = (indexUrl: string) => {
+    if (items) return Promise.resolve(items);
+    if (!loadPromise) {
+      loadPromise = fetch(indexUrl)
+        .then((response) => {
+          if (!response.ok) throw new Error(`Search index request failed: ${response.status}`);
+          return response.json() as Promise<SearchIndexItem[]>;
+        })
+        .then((documents) => {
+          items = prepareSearchIndex(documents);
+          return items;
+        });
+    }
+    return loadPromise;
+  };
+
+  const initSearch = () => {
+    searchAbort?.abort();
+    searchAbort = new AbortController();
+    const signal = searchAbort.signal;
+
+    const root = document.querySelector<HTMLElement>("[data-search]");
+    if (!root) return;
     const trigger = root.querySelector<HTMLButtonElement>(".search-trigger");
     const dialog = root.querySelector<HTMLDialogElement>(".search-dialog");
     const closeButton = root.querySelector<HTMLButtonElement>(".search-close");
@@ -91,8 +119,6 @@ const indexUrl = withBase("/search-index.json");
     const maxResults = Number(root.dataset.maxResults) || 8;
     if (!trigger || !dialog || !closeButton || !input || !status || !results || !indexUrl) return;
 
-    let items: PreparedSearchIndexItem[] | null = null;
-    let loadPromise: Promise<PreparedSearchIndexItem[]> | null = null;
     let resizeAnimation: Animation | null = null;
     let activeIndex = -1;
 
@@ -105,22 +131,6 @@ const indexUrl = withBase("/search-index.json");
         [{ height: `${previousHeight}px` }, { height: `${nextHeight}px` }],
         { duration: 160, easing: "ease-out" },
       );
-    };
-
-    const loadIndex = () => {
-      if (items) return Promise.resolve(items);
-      if (!loadPromise) {
-        loadPromise = fetch(indexUrl)
-          .then((response) => {
-            if (!response.ok) throw new Error(`Search index request failed: ${response.status}`);
-            return response.json() as Promise<SearchIndexItem[]>;
-          })
-          .then((documents) => {
-            items = prepareSearchIndex(documents);
-            return items;
-          });
-      }
-      return loadPromise;
     };
 
     const setActiveResult = (index: number) => {
@@ -193,7 +203,7 @@ const indexUrl = withBase("/search-index.json");
       status.hidden = false;
       status.textContent = items ? "输入关键词搜索文章" : "正在加载搜索索引…";
       requestAnimationFrame(() => input.focus());
-      loadIndex()
+      loadIndex(indexUrl)
         .then(() => renderResults(input.value))
         .catch(() => {
           loadPromise = null;
@@ -203,17 +213,17 @@ const indexUrl = withBase("/search-index.json");
         });
     };
 
-    trigger.addEventListener("click", openSearch);
-    closeButton.addEventListener("click", () => dialog.close());
+    trigger.addEventListener("click", openSearch, { signal });
+    closeButton.addEventListener("click", () => dialog.close(), { signal });
     dialog.addEventListener("click", (event) => {
       if (event.target === dialog) dialog.close();
-    });
+    }, { signal });
     dialog.addEventListener("close", () => {
       input.setAttribute("aria-expanded", "false");
       trigger.focus();
       activeIndex = -1;
-    });
-    input.addEventListener("input", () => renderResults(input.value));
+    }, { signal });
+    input.addEventListener("input", () => renderResults(input.value), { signal });
     input.addEventListener("keydown", (event) => {
       if (event.key === "ArrowDown") {
         event.preventDefault();
@@ -228,7 +238,7 @@ const indexUrl = withBase("/search-index.json");
           activeLink.click();
         }
       }
-    });
+    }, { signal });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && dialog.open) {
@@ -245,8 +255,10 @@ const indexUrl = withBase("/search-index.json");
         event.preventDefault();
         openSearch();
       }
-    });
-  });
+    }, { signal });
+  };
+
+  document.addEventListener("astro:page-load", initSearch);
 </script>
 
 <style>
