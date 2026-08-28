@@ -23,11 +23,5 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ]
   }
 }
