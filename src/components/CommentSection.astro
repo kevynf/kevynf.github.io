@@ -29,9 +29,13 @@ const themeDark = COMMENTS.themeDark ?? 'dark';
 			{
 				isConfigured ? (
 					<script is:inline data-astro-rerun>
-						// data-astro-rerun：ClientRouter 换页后重新执行，为当前文章重新挂载 giscus
-						const commentsContainer = document.querySelector('.comments[data-giscus="true"]');
-						if (commentsContainer) {
+						// Giscus must be mounted after every ClientRouter navigation. The document
+						// survives a swap, so keep one page-load listener alive globally.
+						const initGiscus = () => {
+							const commentsContainer = document.querySelector('.comments[data-giscus="true"]');
+							if (window.__giscusContainer !== commentsContainer) window.__giscusCleanup?.();
+							if (!commentsContainer || commentsContainer.dataset.giscusLoaded === 'true') return;
+							commentsContainer.dataset.giscusLoaded = 'true';
 							const repo = commentsContainer.getAttribute('data-repo') || '';
 							const repoId = commentsContainer.getAttribute('data-repo-id') || '';
 							const category = commentsContainer.getAttribute('data-category') || '';
@@ -84,14 +88,23 @@ const themeDark = COMMENTS.themeDark ?? 'dark';
 								}
 							}, 300);
 
-							// data-astro-rerun 每次换页重跑本脚本，先断开上一个 observer 避免累积
-							if (window.__giscusThemeObserver) window.__giscusThemeObserver.disconnect();
 							const observer = new MutationObserver(() => {
 								setGiscusTheme();
 							});
 							observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-							window.__giscusThemeObserver = observer;
+							window.__giscusContainer = commentsContainer;
+							window.__giscusCleanup = () => {
+								clearInterval(timer);
+								observer.disconnect();
+								window.__giscusContainer = undefined;
+								window.__giscusCleanup = undefined;
+							};
+						};
+						if (!window.__giscusPageLoadBound) {
+							document.addEventListener('astro:page-load', initGiscus);
+							window.__giscusPageLoadBound = true;
 						}
+						initGiscus();
 					</script>
 				) : (
 					<p class="comments-hint">
