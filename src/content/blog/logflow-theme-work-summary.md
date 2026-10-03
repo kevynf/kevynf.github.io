@@ -15,9 +15,12 @@ tags:
 
 - 首页的个人信息、紧凑文章列表和 GitHub 活跃度。
 - 构建阶段获取数据并静态渲染的 GitHub 贡献图。
+- 基于静态索引的文章搜索对话框，支持键盘导航和结果高亮。
 - 可以自定义的社交链接、友链列表。
 - 专题、标签和年份归档页面。
 - giscus 评论支持。
+- 基于 `ClientRouter` 的无刷新换页、主题状态恢复和代码复制。
+- 全站像素流体背景，在不支持 WebGL 或开启减少动态效果时自动降级。
 
 主题本身在 GitHub [LogFlow Theme](https://github.com/kevynf/logflow-theme) 仓库开源。
 
@@ -34,6 +37,7 @@ tags:
 - 页面标题与概述（`PAGE_COPY`）；
 - 首页头像、标语和文章数量（`HOME`）；
 - 社交链接与 GitHub 贡献图配置；
+- 搜索开关与最大结果数（`SEARCH`）；
 - 友链数据（由 `src/config/friend-links.ts` 维护）；
 - giscus 评论相关配置（`COMMENTS`）。
 
@@ -44,7 +48,7 @@ tags:
 使用了尽量简单的 Frontmatter 字段，包括：
 
 - `title`、`description`、`pubDate` 为必填
-- `updatedDate`、`collection`、`collectionDescription`、`tags` 为可选
+- `updatedDate`、`collection`、`collectionDescription`、`tags` 和 `enableComments` 为可选
 
 好处显而易见，一方面可以专注于写作，另一方面如若久别重逢，也可快速上手。
 
@@ -54,6 +58,7 @@ tags:
 
 - 颜色模式切换；
 - 一个紧凑的中文 Header；
+- 目录、标签徽标、阅读时长和搜索等辅助组件；
 - 更具可读性的配色和页面布局；
 - 可选的 giscus 评论。
 
@@ -68,4 +73,3 @@ tags:
 > 同时也以此勉励自己长久坚持，专注写作。
 >
 > 如果你希望为本项目贡献代码，也欢迎提交 PR。
-

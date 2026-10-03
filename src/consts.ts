@@ -1,14 +1,14 @@
-// 站点基础信息：用于 Header、SEO、RSS、sitemap 与页脚。
+// 站点基础信息，用于页头、SEO、RSS、站点地图和页脚。
 export const SITE_TITLE = "K3vynf's Blog";
 export const SITE_DESCRIPTION = "Welcome to my Blog!";
 export const SITE_URL = "https://kevynf.github.io";
 export const COPYRIGHT_NAME = "K3vynf";
 
-// 静态页面标题与概述：同时用于页面标题区域和 SEO description。
+// 静态页面标题和描述，同时用于页面标题区域和 SEO 描述。
 export const PAGE_COPY = {
   blog: {
     title: "文章",
-    description: "按时间记录的学习和实践。",
+    description: "记录学习和实践。",
     descriptionItalic: false,
   },
   collections: {
@@ -38,7 +38,7 @@ export const PAGE_COPY = {
   },
 } as const;
 
-// Header 导航入口。
+// 页头导航入口。
 export const NAV_LINKS = [
   { href: "/", label: "首页" },
   { href: "/blog", label: "文章" },
@@ -46,7 +46,7 @@ export const NAV_LINKS = [
   { href: "/about", label: "关于" },
 ] as const;
 
-// 页脚社交链接；icon 对应 SocialIcon 内置图标键名。
+// 页脚社交链接，icon 对应 SocialIcon 的内置图标键名。
 export const SOCIAL_LINKS = [
   {
     label: "GitHub",
@@ -60,36 +60,36 @@ export const SOCIAL_LINKS = [
   },
 ] as const;
 
-// 首页个人信息与内容数量。
+// 首页个人信息和文章数量配置。
 export const HOME = {
   avatar: {
     src: "/avatar.svg",
     alt: "Kevynf Avatar",
-  },
-  motto: "May the Force be with you.",
-  description: "早。",
+    },
+  description: "Cominciamo.",
+  motto: "Facciamo una pausa?",
   recentPostsLimit: 6,
 } as const;
 
-// 首页 GitHub 贡献图。
+// 首页 GitHub 贡献图配置。
 export const GH_CONTRIBUTE = {
   title: "GitHub 活跃度",
-  description: "最近一年的开源贡献记录",
+  description: "近期的贡献记录。",
   username: "kevynf",
   profileUrl: "https://github.com/kevynf",
   errorMessage: "GitHub 贡献图暂时不可用。",
 } as const;
 
-// 静态文章搜索；关闭后 Header 不渲染搜索入口。
+// 静态文章搜索配置，关闭后页头不渲染搜索入口。
 export const SEARCH = {
   enabled: true,
   maxResults: 8,
 } as const;
 
-// 友链数据维护在独立文件中。
+// 友链数据存放在独立配置文件中。
 export { FRIEND_LINKS } from "./config/friend-links";
 
-// 评论系统配置，当前提供方为 giscus。
+// 评论系统配置，当前使用 Giscus。
 export const COMMENTS = {
   enabled: true,
   provider: "giscus",

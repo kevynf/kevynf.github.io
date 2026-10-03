@@ -47,12 +47,14 @@ async function requestGraphQL(body: string, token: string): Promise<unknown> {
   });
 }
 
-export async function fetchGitHubContributions(username: string): Promise<GitHubContributionData> {
+export async function fetchGitHubContributions(
+  username: string,
+  from = new Date(Date.now() - 365 * DAY_MS),
+): Promise<GitHubContributionData> {
   const token = process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN;
   if (!token) throw new Error("GITHUB_TOKEN is required for GitHub GraphQL");
 
   const to = new Date();
-  const from = new Date(to.valueOf() - 365 * DAY_MS);
   const query = `query($login: String!, $from: DateTime!, $to: DateTime!) {
     user(login: $login) {
       contributionsCollection(from: $from, to: $to) {

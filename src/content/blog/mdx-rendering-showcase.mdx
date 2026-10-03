@@ -10,14 +10,14 @@ tags:
   - Styles
 ---
 
-正文中文使用霞鹜文楷 Screen，英文、数字与常用符号也由同一字体协调呈现；代码块保持独立的等宽字体栈。
+正文使用系统无衬线字体栈，站点名称使用像素字体；代码块保持独立的等宽字体栈。
 
 export const InfoBadge = ({ text }) => (
 	<span
 		style={{
 			display: 'inline-block',
 			padding: '0.15rem 0.55rem',
-			borderRadius: 'var(--radius-ui)',
+			borderRadius: 'var(--radius-box)',
 			fontSize: 'var(--text-xs)',
 			background: 'rgba(99, 102, 241, 0.14)',
 			color: 'rgb(79, 70, 229)',
@@ -55,7 +55,7 @@ export const InfoBadge = ({ text }) => (
 export const PAGE_COPY = {
 	blog: {
 		title: '文章',
-		description: '按时间浏览全部文章。',
+		description: '记录学习和实践。',
 	},
 };
 ```
@@ -77,7 +77,7 @@ export const PAGE_COPY = {
 
 ### HTML 块示例
 
-<div style="padding: 0.85rem 1rem; border: 1px solid rgba(125, 125, 125, 0.3); border-radius: var(--radius-ui);">
+<div style="padding: 0.85rem 1rem; border: 1px solid rgba(125, 125, 125, 0.3); border-radius: var(--radius-box);">
   这是原生 HTML 块，可用于自定义展示区域。
 </div>
 

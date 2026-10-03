@@ -1,0 +1,61 @@
+---
+import type { MarkdownHeading } from "astro";
+import SidebarSection from "./layout/SidebarSection.astro";
+
+interface Props { headings: MarkdownHeading[] }
+
+const topDepth = Math.min(...Astro.props.headings.map((heading) => heading.depth));
+const headings = Astro.props.headings.filter((heading) => heading.depth - topDepth < 3);
+const indentClasses = ["", "pl-3", "pl-6"];
+const linkClass = "relative block py-1 text-body text-content no-underline transition-colors hover:text-accent aria-[current=location]:text-heading aria-[current=location]:before:absolute aria-[current=location]:before:inset-y-1 aria-[current=location]:before:-left-cell-x aria-[current=location]:before:w-0.5 aria-[current=location]:before:bg-accent";
+---
+
+<SidebarSection title="目录">
+  {headings.length > 0 ? (
+    <nav data-toc aria-label="文章目录">
+      <ol class="-mx-cell-x -my-1 max-h-[calc(100dvh_-_10rem)] overflow-y-auto overscroll-contain px-cell-x">
+        {headings.map((heading) => (
+          <li>
+            <a class:list={[linkClass, indentClasses[heading.depth - topDepth]]} href={`#${heading.slug}`}>{heading.text}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  ) : (
+    <p class="text-body text-subtle">本文没有小节标题。</p>
+  )}
+</SidebarSection>
+
+<script>
+  let controller: AbortController | undefined;
+
+  document.addEventListener("astro:page-load", () => {
+    controller?.abort();
+    const toc = document.querySelector<HTMLElement>("[data-toc]");
+    if (!toc) return;
+    controller = new AbortController();
+
+    const links = [...toc.querySelectorAll<HTMLAnchorElement>("a[href^='#']")];
+    const targets = links.map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))));
+    const header = document.querySelector<HTMLElement>("[data-site-header]");
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const offset = (header?.offsetHeight ?? 0) + 24;
+      let activeIndex = -1;
+      targets.forEach((target, index) => {
+        if (target && target.getBoundingClientRect().top <= offset) activeIndex = index;
+      });
+      links.forEach((link, index) => {
+        if (index === activeIndex) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+
+    window.addEventListener("scroll", schedule, { passive: true, signal: controller.signal });
+    window.addEventListener("resize", schedule, { passive: true, signal: controller.signal });
+    update();
+  });
+</script>

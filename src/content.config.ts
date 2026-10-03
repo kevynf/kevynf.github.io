@@ -3,14 +3,14 @@ import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
 const blog = defineCollection({
-  // Load Markdown and MDX files in the `src/content/blog/` directory.
+  // 加载博客目录中的 Markdown 和 MDX 文件。
   loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
-  // Type-check frontmatter using a schema
+  // 使用 schema 校验文章 frontmatter。
   schema: ({ image }) =>
     z.object({
       title: z.string(),
       description: z.string(),
-      // Transform string to Date object
+      // 将日期值转换为 Date 对象。
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
       heroImage: image().optional(),

@@ -1,5 +1,7 @@
 ---
 import { COMMENTS } from '../consts';
+import Box from './layout/Box.astro';
+import Cell from './layout/Cell.astro';
 const shouldRender = COMMENTS.enabled;
 const isConfigured =
 	shouldRender &&
@@ -13,8 +15,8 @@ const themeDark = COMMENTS.themeDark ?? 'dark';
 
 {
 	shouldRender && (
-		<section
-			class="comments"
+		<Box
+			as="section"
 			data-giscus={isConfigured ? 'true' : 'false'}
 			data-repo={COMMENTS.repo}
 			data-repo-id={COMMENTS.repoId}
@@ -25,14 +27,14 @@ const themeDark = COMMENTS.themeDark ?? 'dark';
 			data-theme-light={themeLight}
 			data-theme-dark={themeDark}
 		>
-			<h2>评论</h2>
+			<Cell as="h2" variant="header" class="text-section text-heading">评论</Cell>
+			<Cell class="[&_.giscus]:w-full [&_iframe]:block [&_iframe]:w-full" data-comments-body>
 			{
 				isConfigured ? (
 					<script is:inline data-astro-rerun>
-						// Giscus must be mounted after every ClientRouter navigation. The document
-						// survives a swap, so keep one page-load listener alive globally.
+						// 文档节点跨页保留；每次 page-load 挂载 Giscus，并保持监听只注册一次。
 						const initGiscus = () => {
-							const commentsContainer = document.querySelector('.comments[data-giscus="true"]');
+							const commentsContainer = document.querySelector('[data-giscus="true"]');
 							if (window.__giscusContainer !== commentsContainer) window.__giscusCleanup?.();
 							if (!commentsContainer || commentsContainer.dataset.giscusLoaded === 'true') return;
 							commentsContainer.dataset.giscusLoaded = 'true';
@@ -64,7 +66,8 @@ const themeDark = COMMENTS.themeDark ?? 'dark';
 							script.setAttribute('data-theme', getTheme());
 							script.setAttribute('data-lang', lang);
 							script.setAttribute('data-loading', 'lazy');
-							commentsContainer.appendChild(script);
+							const commentsBody = commentsContainer.querySelector('[data-comments-body]') || commentsContainer;
+							commentsBody.appendChild(script);
 
 							const setGiscusTheme = () => {
 								const iframe = document.querySelector('iframe.giscus-frame');
@@ -107,41 +110,12 @@ const themeDark = COMMENTS.themeDark ?? 'dark';
 						initGiscus();
 					</script>
 				) : (
-					<p class="comments-hint">
+					<p class="text-body text-subtle">
 						评论系统尚未配置，请检查 src/consts.ts 中的 COMMENTS 设置。
 					</p>
 				)
 			}
-		</section>
+			</Cell>
+		</Box>
 	)
 }
-
-<style>
-	.comments {
-		margin-top: 2rem;
-		padding-top: 1rem;
-		width: 100%;
-		min-width: 0;
-		overflow-x: clip;
-	}
-	:global(.comments .giscus) {
-		width: 100%;
-		max-width: 100%;
-		min-width: 0;
-	}
-	:global(.comments iframe.giscus-frame) {
-		display: block;
-		width: 100%;
-		max-width: 100%;
-		min-width: 0;
-	}
-	.comments h2 {
-		margin: 0 0 0.75rem;
-		font-size: var(--text-lg);
-	}
-	.comments-hint {
-		margin: 0;
-		color: rgb(var(--gray));
-		font-size: var(--text-sm);
-	}
-</style>

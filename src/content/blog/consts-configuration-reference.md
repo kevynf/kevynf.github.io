@@ -10,7 +10,7 @@ tags:
   - Template
 ---
 
-全站可复用配置集中在 `src/consts.ts`。页面内容、文章 frontmatter 和纯视觉样式不放在这里：文章内容由 `src/content/` 管理，颜色、字号与间距由 `src/styles/global.css` 管理。
+全站可复用配置集中在 `src/consts.ts`。页面内容、文章 frontmatter 和纯视觉样式不放在这里：文章内容由 `src/content/` 管理，颜色、字号与间距由 `src/styles/global.css` 管理。搜索索引由构建时从文章集合生成，`SEARCH` 只控制搜索入口和结果数量。
 
 ## 站点基础信息
 
@@ -54,7 +54,7 @@ export const COPYRIGHT_NAME = "K3vynf";
 export const PAGE_COPY = {
   blog: {
     title: "文章",
-    description: "按时间记录的学习和实践。",
+    description: "记录学习和实践。",
     descriptionItalic: false,
   },
   collections: {
@@ -97,7 +97,7 @@ export const PAGE_COPY = {
 export const NAV_LINKS = [
   { href: "/", label: "首页" },
   { href: "/blog", label: "文章" },
-  { href: "/friends", label: "友链" },
+  { href: "/friends", label: "会客室" },
   { href: "/about", label: "关于" },
 ] as const;
 ```
@@ -129,11 +129,11 @@ export const SOCIAL_LINKS = [
 ```ts
 export const HOME = {
   avatar: {
-    src: "https://github.com/kevynf.png?size=256",
+    src: "/avatar.svg",
     alt: "Kevynf Avatar",
   },
-  motto: "May the Force be with you.",
-  description: "你好。",
+  motto: "Facciamo una pausa?",
+  description: "Cominciamo.",
   recentPostsLimit: 6,
 } as const;
 ```
@@ -151,10 +151,10 @@ export const HOME = {
 ```ts
 export const GH_CONTRIBUTE = {
   title: "GitHub 活跃度",
-  description: "最近一年的开源贡献记录",
+  description: "近期的贡献记录",
   username: "kevynf",
   profileUrl: "https://github.com/kevynf",
-  errorMessage: "GitHub calendar is temporarily unavailable.",
+  errorMessage: "GitHub 贡献图暂时不可用。",
 } as const;
 ```
 
@@ -162,6 +162,22 @@ export const GH_CONTRIBUTE = {
 - `username`：贡献图对应的 GitHub 用户名。
 - `profileUrl`：点击区块后前往的 GitHub 主页。
 - `errorMessage`：贡献图加载失败时显示的提示。
+
+构建阶段通过 `GITHUB_TOKEN` 或 `GH_TOKEN` 访问 GitHub GraphQL API。令牌缺失或请求失败时只显示 `errorMessage`，不会使其他页面停止生成；部署工作流应在构建步骤注入令牌。
+
+## 搜索
+
+`SEARCH` 控制页头是否显示文章搜索入口，以及搜索结果的最大数量。索引由 `src/pages/search-index.json.ts` 在构建时生成，搜索内容包括文章标题、描述和标签。
+
+```ts
+export const SEARCH = {
+  enabled: true,
+  maxResults: 8,
+} as const;
+```
+
+- `enabled`：设为 `false` 时不渲染页头搜索按钮。
+- `maxResults`：单次最多显示的匹配文章数。
 
 ## 友链
 
@@ -172,16 +188,16 @@ export const FRIEND_LINKS = [
   {
     name: "K3vynf",
     link: "https://kevynf.github.io",
-    avatar: "https://github.com/kevynf.png?size=256",
-    desc: "May the Force be with you.",
+    avatar: "/avatar.svg",
+    desc: "Facciamo una pausa?",
   },
 ];
 ```
 
 - `name`：站点名称，必填。
-- `link`：站点地址；旧数据中的 `url` 仍兼容。
+- `link`：站点地址；旧数据中的 `url` 仍兼容。展示页会在新字段为空时回退到 `url`。
 - `avatar`：头像地址，可选；缺失时显示站点名称首字。
-- `desc`：一句话简介；旧数据中的 `description` 仍兼容。
+- `desc`：一句话简介；旧数据中的 `description` 仍兼容。首页交换信息中的本站简介来自 `HOME.motto`。
 
 ## 评论
 
@@ -218,4 +234,4 @@ export const COMMENTS = {
 2. 修改 `PAGE_COPY`、`NAV_LINKS` 和 `HOME`，确定站点文案。
 3. 修改 `SOCIAL_LINKS`、`GH_CONTRIBUTE` 与 `FRIEND_LINKS`。
 4. 在仓库启用 Discussions 后配置 `COMMENTS`。
-5. 运行 `npx astro check` 和 `npm run build` 验证配置。
+5. 运行 `pnpm check` 和 `pnpm build` 验证配置。
