@@ -6,15 +6,17 @@ main {
   line-height: 1.6;
 }
 
-main .rounded-md,
-main .gsc-comment-box,
-main .gsc-comment > div,
-main .gsc-reply-box,
-main .gsc-reactions-popover,
-main .btn,
-main .form-control,
-main .gsc-reaction-button,
-main .gsc-direct-reaction-button {
+/* giscus 内置的 Tailwind 工具类带 #__next 前缀，需同等 ID 优先级才能覆盖。 */
+#__next main .rounded-md,
+#__next main .gsc-comment-box,
+#__next main .gsc-comment-box-write,
+#__next main .gsc-comment > div,
+#__next main .gsc-reply-box,
+#__next main .gsc-reactions-popover,
+#__next main .btn,
+#__next main .form-control,
+#__next main .gsc-reaction-button,
+#__next main .gsc-direct-reaction-button {
   border-radius: 3px;
 }
 
