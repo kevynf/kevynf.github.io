@@ -1,0 +1,94 @@
+/* 本站亮色 giscus 主题，色值与 src/styles/global.css 的 @theme token 保持同步。 */
+@import url("./base.css");
+
+main {
+  --color-prettylights-syntax-comment: #6e7781;
+  --color-prettylights-syntax-constant: #0550ae;
+  --color-prettylights-syntax-entity: #8250df;
+  --color-prettylights-syntax-storage-modifier-import: #24292f;
+  --color-prettylights-syntax-entity-tag: #116329;
+  --color-prettylights-syntax-keyword: #cf222e;
+  --color-prettylights-syntax-string: #0a3069;
+  --color-prettylights-syntax-variable: #953800;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
+  --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
+  --color-prettylights-syntax-invalid-illegal-bg: #82071e;
+  --color-prettylights-syntax-carriage-return-text: #f6f8fa;
+  --color-prettylights-syntax-carriage-return-bg: #cf222e;
+  --color-prettylights-syntax-string-regexp: #116329;
+  --color-prettylights-syntax-markup-list: #3b2300;
+  --color-prettylights-syntax-markup-heading: #0550ae;
+  --color-prettylights-syntax-markup-italic: #24292f;
+  --color-prettylights-syntax-markup-bold: #24292f;
+  --color-prettylights-syntax-markup-deleted-text: #82071e;
+  --color-prettylights-syntax-markup-deleted-bg: #ffebe9;
+  --color-prettylights-syntax-markup-inserted-text: #116329;
+  --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
+  --color-prettylights-syntax-markup-changed-text: #953800;
+  --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
+  --color-prettylights-syntax-markup-ignored-text: #eaeef2;
+  --color-prettylights-syntax-markup-ignored-bg: #0550ae;
+  --color-prettylights-syntax-meta-diff-range: #8250df;
+  --color-prettylights-syntax-brackethighlighter-angle: #57606a;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f;
+  --color-prettylights-syntax-constant-other-reference-link: #0a3069;
+
+  --color-btn-text: #3b4045;
+  --color-btn-bg: #efefee;
+  --color-btn-border: #dcdedf;
+  --color-btn-shadow: none;
+  --color-btn-inset-shadow: none;
+  --color-btn-hover-bg: #e8e8e7;
+  --color-btn-hover-border: #dcdedf;
+  --color-btn-active-bg: #dcdedf;
+  --color-btn-active-border: #dcdedf;
+  --color-btn-selected-bg: #e8e8e7;
+  --color-btn-primary-text: #fff;
+  --color-btn-primary-bg: #3b6ea5;
+  --color-btn-primary-border: transparent;
+  --color-btn-primary-shadow: none;
+  --color-btn-primary-inset-shadow: none;
+  --color-btn-primary-hover-bg: #335f8f;
+  --color-btn-primary-hover-border: transparent;
+  --color-btn-primary-selected-bg: #2c537d;
+  --color-btn-primary-selected-shadow: none;
+  --color-btn-primary-disabled-text: rgb(255 255 255 / 80%);
+  --color-btn-primary-disabled-bg: #9db6d2;
+  --color-btn-primary-disabled-border: transparent;
+  --color-action-list-item-default-hover-bg: rgb(0 0 0 / 6%);
+  --color-segmented-control-bg: #efefee;
+  --color-segmented-control-button-bg: #f7f7f6;
+  --color-segmented-control-button-selected-border: #dcdedf;
+
+  --color-fg-default: #3b4045;
+  --color-fg-muted: #6a6f74;
+  --color-fg-subtle: #6a6f74;
+  --color-canvas-default: #f7f7f6;
+  --color-canvas-overlay: #f7f7f6;
+  --color-canvas-inset: #efefee;
+  --color-canvas-subtle: #efefee;
+  --color-border-default: #dcdedf;
+  --color-border-muted: #e6e7e8;
+  --color-neutral-muted: rgb(0 0 0 / 6%);
+  --color-accent-fg: #3b6ea5;
+  --color-accent-emphasis: #3b6ea5;
+  --color-accent-muted: rgb(59 110 165 / 40%);
+  --color-accent-subtle: rgb(59 110 165 / 10%);
+  --color-success-fg: #1a7f37;
+  --color-attention-fg: #9a6700;
+  --color-attention-muted: rgb(212 167 44 / 40%);
+  --color-attention-subtle: #fff8c5;
+  --color-danger-fg: #d1242f;
+  --color-danger-muted: rgb(255 129 130 / 40%);
+  --color-danger-subtle: #ffebe9;
+  --color-primer-shadow-inset: none;
+  --color-scale-gray-1: #e8e8e7;
+  --color-scale-blue-1: rgb(59 110 165 / 18%);
+
+  --color-social-reaction-bg-hover: var(--color-scale-gray-1);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
+}
+
+main .pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
+}

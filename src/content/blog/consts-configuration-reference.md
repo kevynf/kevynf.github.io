@@ -212,8 +212,8 @@ export const COMMENTS = {
   category: "Announcements",
   categoryId: "DIC_...",
   mapping: "pathname",
-  themeLight: "light_protanopia",
-  themeDark: "transparent_dark",
+  themeLight: "/giscus/light.css",
+  themeDark: "/giscus/dark.css",
   lang: "zh-CN",
 } as const;
 ```
@@ -223,7 +223,7 @@ export const COMMENTS = {
 - `repo`、`repoId`：已启用 Discussions 的公开仓库及其 ID。
 - `category`、`categoryId`：用于评论的 Discussion 分类及其 ID。
 - `mapping`：页面与讨论串的映射方式，常用值为 `pathname`、`title`、`url` 或 `og:title`。
-- `themeLight`、`themeDark`：跟随站点明暗模式切换的 giscus 主题。
+- `themeLight`、`themeDark`：跟随站点明暗模式切换的 giscus 主题。可填官方主题名，或以 `/` 开头的站内 CSS 路径；默认指向 `public/giscus/` 下与站点配色一致的自定义主题。
 - `lang`：giscus 界面语言。
 
 仓库和分类 ID 可通过 [giscus 配置页](https://giscus.app/zh-CN) 获取。

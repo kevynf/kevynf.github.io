@@ -43,8 +43,8 @@ export const COMMENTS = {
 	category: 'Announcements',
 	categoryId: '你的 categoryId',
 	mapping: 'pathname',
-	themeLight: 'light_protanopia',
-	themeDark: 'transparent_dark',
+	themeLight: '/giscus/light.css',
+	themeDark: '/giscus/dark.css',
 	lang: 'zh-CN',
 };
 ```
@@ -81,4 +81,6 @@ enableComments: false
 - `lang`
   - 可设置 `zh-CN`、`en` 等。
 - `themeLight` / `themeDark`
-  - 可从 giscus 官方主题列表中选择，例如 `light`、`dark`、`transparent_dark`。
+  - 默认使用 `public/giscus/light.css` 与 `dark.css`，配色、字体和圆角与站点 token 保持一致；修改 `global.css` 的颜色后需同步更新这两个文件。
+  - 也可改回 giscus 官方主题名，例如 `light`、`dark`、`transparent_dark`。
+  - 自定义主题由 giscus iframe 跨域加载，部署环境需返回 CORS 头（GitHub Pages 默认满足）。

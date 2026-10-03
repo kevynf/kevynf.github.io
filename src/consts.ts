@@ -98,7 +98,7 @@ export const COMMENTS = {
   category: "Announcements",
   categoryId: "DIC_kwDORm5yLM4C4YFb",
   mapping: "pathname",
-  themeLight: "light_protanopia",
-  themeDark: "transparent_dark",
+  themeLight: "/giscus/light.css",
+  themeDark: "/giscus/dark.css",
   lang: "zh-CN",
 } as const;

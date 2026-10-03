@@ -1,0 +1,39 @@
+/* giscus 主题共用规则：在 iframe 内复刻本站的字体、圆角与密度。 */
+
+main {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: .875rem;
+  line-height: 1.6;
+}
+
+main .rounded-md,
+main .gsc-comment-box,
+main .gsc-comment > div,
+main .gsc-reply-box,
+main .gsc-reactions-popover,
+main .btn,
+main .form-control,
+main .gsc-reaction-button,
+main .gsc-direct-reaction-button {
+  border-radius: 3px;
+}
+
+main .gsc-header {
+  padding-bottom: .75rem;
+}
+
+main .btn,
+main .gsc-social-reaction-summary-item {
+  transition: color .15s ease, background-color .15s ease, border-color .15s ease;
+}
+
+main a:not(.btn):hover {
+  text-underline-offset: .18em;
+  text-decoration-thickness: 2px;
+}
+
+main :focus-visible {
+  outline: 2px solid var(--color-accent-fg);
+  outline-offset: 3px;
+  box-shadow: none;
+}
