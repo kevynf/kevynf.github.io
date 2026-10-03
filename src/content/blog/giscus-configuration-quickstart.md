@@ -84,3 +84,7 @@ enableComments: false
   - 默认使用 `public/giscus/light.css` 与 `dark.css`，配色、字体和圆角与站点 token 保持一致；修改 `global.css` 的颜色后需同步更新这两个文件。
   - 也可改回 giscus 官方主题名，例如 `light`、`dark`、`transparent_dark`。
   - 自定义主题由 giscus iframe 跨域加载，部署环境需返回 CORS 头（GitHub Pages 默认满足）。
+- 默认排序
+  - giscus 默认按「最早」排序，且无法按页面单独设置。
+  - 仓库根目录的 `giscus.json` 可全局修改，本站设为 `{"defaultCommentOrder": "newest"}`，所有评论区默认最新在前，访客仍可手动切换。
+  - 该文件由 giscus 从 GitHub 仓库的默认分支读取，推送后才生效。

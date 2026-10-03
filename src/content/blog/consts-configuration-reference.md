@@ -135,6 +135,7 @@ export const HOME = {
   motto: "Facciamo una pausa?",
   description: "Cominciamo.",
   recentPostsLimit: 6,
+  commentsTitle: "近况",
 } as const;
 ```
 
@@ -143,6 +144,7 @@ export const HOME = {
 - `motto`：首页显示的个人格言，同时用于生成本站友链信息中的 `Desc`。
 - `description`：首页直接展示的个人简介，不从 About 正文自动提取。
 - `recentPostsLimit`：首页最近文章数量。
+- `commentsTitle`：首页底部评论区的标题，该评论区用于发布近况。
 
 ## GitHub 活跃度
 

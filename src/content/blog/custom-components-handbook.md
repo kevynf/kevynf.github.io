@@ -188,10 +188,11 @@ tags:
 
 ### CommentSection.astro
 
-按 `COMMENTS` 配置动态加载 Giscus，并在主题切换时同步评论 iframe 的主题。组件无参数；全局关闭 `COMMENTS.enabled` 时不渲染，配置不完整时显示提示。文章页还会读取 frontmatter 的 `enableComments`，未设置时默认开启。
+按 `COMMENTS` 配置动态加载 Giscus，并在主题切换时同步评论 iframe 的主题。可选参数 `title` 设置区块标题，默认为「评论」；首页传入 `HOME.commentsTitle` 作为近况区。全局关闭 `COMMENTS.enabled` 时不渲染，配置不完整时显示提示。文章页还会读取 frontmatter 的 `enableComments`，未设置时默认开启。
 
 ```astro
 <CommentSection />
+<CommentSection title="近况" />
 ```
 
 `COMMENTS` 的关键字段包括 `enabled`、`provider`、`repo`、`repoId`、`category`、`categoryId`、`mapping`、`themeLight`、`themeDark` 和 `lang`。

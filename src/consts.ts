@@ -69,6 +69,7 @@ export const HOME = {
   description: "Cominciamo.",
   motto: "Facciamo una pausa?",
   recentPostsLimit: 6,
+  commentsTitle: "近况",
 } as const;
 
 // 首页 GitHub 贡献图配置。

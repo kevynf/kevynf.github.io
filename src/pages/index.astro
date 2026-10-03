@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import ArchiveLink from "../components/ArchiveLink.astro";
 import Badge from "../components/Badge.astro";
+import CommentSection from "../components/CommentSection.astro";
 import GitHubContribute from "../components/GitHubContribute.astro";
 import PostList from "../components/PostList.astro";
 import Box from "../components/layout/Box.astro";
@@ -18,15 +19,15 @@ const posts = sortByDateDesc(await getCollection("blog")).slice(0, HOME.recentPo
   <div class="grid items-start gap-box md:grid-cols-sidebar">
     <aside class="grid min-w-0 gap-box md:col-start-2 md:row-start-1">
       <Box>
-        <Cell variant="header" class="grid grid-cols-[4.5rem_minmax(0,1fr)] items-center gap-3">
+        <Cell variant="header" class="grid grid-cols-[4.5rem_minmax(0,1fr)] items-end gap-3">
           <img class="size-18 rounded-box object-cover" src={withBase(HOME.avatar.src)} alt={HOME.avatar.alt} width="72" height="72" loading="eager" fetchpriority="high" />
-          <div class="grid min-w-0 gap-1">
+          <div class="flex min-w-0 flex-col gap-1">
             <h1 class="font-pixel text-card font-normal text-heading">{SITE_TITLE}</h1>
-            <p class="text-body">{HOME.description}</p>
+            <p class="font-greeting text-greeting font-normal">{HOME.description}</p>
           </div>
         </Cell>
         <Cell class="flex items-baseline justify-between gap-3">
-          <p class="min-w-0 text-body text-subtle">{HOME.motto}</p>
+          <p class="min-w-0 font-motto text-motto text-subtle">{HOME.motto}</p>
           <Badge href={withBase("/about/")}>关于本站</Badge>
         </Cell>
       </Box>
@@ -40,4 +41,5 @@ const posts = sortByDateDesc(await getCollection("blog")).slice(0, HOME.recentPo
       <PostList posts={posts} showReadingTime={true} />
     </Box>
   </div>
+  <CommentSection title={HOME.commentsTitle} />
 </SiteLayout>

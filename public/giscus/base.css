@@ -1,12 +1,9 @@
-/* giscus 主题共用规则：在 iframe 内复刻本站的字体、圆角与密度。 */
-
 main {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: .875rem;
   line-height: 1.6;
 }
 
-/* giscus 内置的 Tailwind 工具类带 #__next 前缀，需同等 ID 优先级才能覆盖。 */
 #__next main .rounded-md,
 #__next main .gsc-comment-box,
 #__next main .gsc-comment-box-write,

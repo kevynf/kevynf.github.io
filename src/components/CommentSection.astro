@@ -1,7 +1,14 @@
 ---
 import { COMMENTS } from '../consts';
+import { withBase } from '../utils/withBase';
 import Box from './layout/Box.astro';
 import Cell from './layout/Cell.astro';
+
+interface Props {
+	title?: string;
+}
+
+const { title = '评论' } = Astro.props;
 const shouldRender = COMMENTS.enabled;
 const isConfigured =
 	shouldRender &&
@@ -9,11 +16,10 @@ const isConfigured =
 	COMMENTS.repo.trim().length > 0 &&
 	COMMENTS.repoId.trim().length > 0 &&
 	COMMENTS.categoryId.trim().length > 0;
-// 以 / 开头的主题视为站内 CSS 路径，补上 base；客户端再转成 giscus 需要的绝对 URL。
-const withBase = (theme: string) =>
-	theme.startsWith('/') ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${theme}` : theme;
-const themeLight = withBase(COMMENTS.themeLight ?? 'light');
-const themeDark = withBase(COMMENTS.themeDark ?? 'dark');
+const resolveTheme = (theme: string) =>
+	theme.startsWith('/') ? new URL(withBase(theme), Astro.site).href : theme;
+const themeLight = resolveTheme(COMMENTS.themeLight ?? 'light');
+const themeDark = resolveTheme(COMMENTS.themeDark ?? 'dark');
 ---
 
 {
@@ -30,7 +36,7 @@ const themeDark = withBase(COMMENTS.themeDark ?? 'dark');
 			data-theme-light={themeLight}
 			data-theme-dark={themeDark}
 		>
-			<Cell as="h2" variant="header" class="text-section text-heading">评论</Cell>
+			<Cell as="h2" variant="header" class="text-section text-heading">{title}</Cell>
 			<Cell class="[&_.giscus]:w-full [&_iframe]:block [&_iframe]:w-full" data-comments-body>
 			{
 				isConfigured ? (
@@ -50,10 +56,8 @@ const themeDark = withBase(COMMENTS.themeDark ?? 'dark');
 							const lightTheme = commentsContainer?.getAttribute('data-theme-light') || 'light';
 							const darkTheme = commentsContainer?.getAttribute('data-theme-dark') || 'dark';
 
-							const getTheme = () => {
-								const theme = document.documentElement.classList.contains('dark') ? darkTheme : lightTheme;
-								return theme.startsWith('/') ? new URL(theme, location.origin).href : theme;
-							};
+							const getTheme = () =>
+								document.documentElement.classList.contains('dark') ? darkTheme : lightTheme;
 
 							const script = document.createElement('script');
 							script.src = 'https://giscus.app/client.js';
@@ -70,7 +74,7 @@ const themeDark = withBase(COMMENTS.themeDark ?? 'dark');
 							script.setAttribute('data-input-position', 'top');
 							script.setAttribute('data-theme', getTheme());
 							script.setAttribute('data-lang', lang);
-							script.setAttribute('data-loading', 'lazy');
+							script.setAttribute('data-loading', 'eager');
 							const commentsBody = commentsContainer.querySelector('[data-comments-body]') || commentsContainer;
 							commentsBody.appendChild(script);
 

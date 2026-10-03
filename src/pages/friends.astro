@@ -56,7 +56,7 @@ const copyButtonClass = "chip chip-link data-[state=success]:text-accent data-[s
           {exchangeFields.filter(({ href }) => href).map(({ label, value, href }) => (
             <>
               <dt class="chip">{label}</dt>
-              <dd class="min-w-0 break-all"><a class="text-accent no-underline hover:underline" href={href} target="_blank" rel="noopener noreferrer">{value}</a></dd>
+              <dd class="min-w-0 break-all"><a class="text-accent underline decoration-accent/40 hover:text-accent hover:decoration-current" href={href} target="_blank" rel="noopener noreferrer">{value}</a></dd>
             </>
           ))}
         </dl>

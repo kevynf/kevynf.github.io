@@ -32,6 +32,10 @@ const { title, description, image, type = 'website' } = Astro.props;
 />
 <meta name="generator" content={Astro.generator} />
 
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400&family=Dancing+Script:wght@400..700&family=Press+Start+2P&display=swap" />
+
 <script is:inline>
 	// 内联主题初始化代码，避免页面首屏出现错误主题。
 	const getThemePreference = () => {
