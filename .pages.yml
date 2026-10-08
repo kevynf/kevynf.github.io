@@ -2,18 +2,39 @@ media:
   label: 媒体
   input: public/uploads
   output: /uploads
+  categories: [image]
+  extensions: [png, jpg, jpeg, webp, avif]
+  rename: safe
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: app
+    templates:
+      create: "content(create): {path}"
+      update: "content(update): {path}"
+      delete: "content(delete): {path}"
+      rename: "content(rename): {oldPath} -> {newPath}"
 
 content:
   - name: blog
     label: 文章
     type: collection
     path: src/content/blog
-    filename: "{primary}.md"
+    filename:
+      template: "{primary}.md"
+      field: create
     view:
       fields: [title, pubDate, collection]
       primary: title
       sort:
         - pubDate
+      search:
+        - title
+        - description
+        - collection
+        - tags
       default:
         sort: pubDate
         order: desc
@@ -21,12 +42,15 @@ content:
       - name: title
         label: 标题
         type: string
+        required: true
       - name: description
         label: 摘要
         type: text
+        required: true
       - name: pubDate
         label: 发布日期
         type: date
+        required: true
       - name: updatedDate
         label: 更新时间
         type: date
@@ -35,6 +59,9 @@ content:
         label: 封面图
         type: image
         required: false
+        options:
+          extensions: [png, jpg, jpeg, webp, avif]
+          rename: safe
       - name: collection
         label: 专题
         type: string
@@ -52,6 +79,7 @@ content:
         label: 启用评论
         type: boolean
         required: false
+        default: true
       - name: body
         label: 正文
         type: rich-text
