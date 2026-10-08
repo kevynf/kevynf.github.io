@@ -23,7 +23,7 @@ tags:
 ```
 
 - 必填参数：`title`、`description`
-- 可选参数：`image?: ImageMetadata`、`type?: 'website' | 'article'`
+- 可选参数：`image?: string`、`type?: 'website' | 'article'`
 - 关联配置：`SITE_TITLE` 用于 RSS 标题；`SITE_URL` 由 Astro 配置用于 canonical、sitemap 和 RSS。
 
 ### SiteLayout.astro

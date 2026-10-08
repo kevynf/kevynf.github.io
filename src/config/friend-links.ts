@@ -20,4 +20,10 @@ export const FRIEND_LINKS: FriendLink[] = [
     link: "https://dannyshi.pages.dev/",
     avatar: "https://dannyshi.pages.dev/head.jpg",
   },
+  {
+    name: "xjhjtzac 的 Blog",
+    desc: "待到山花烂漫时",
+    link: "https://xjhjtz.github.io",
+    avatar: "https://cdn.jsdmirror.com/gh/xjhjtz/xjhjtzac-photos-bed@main/avatar.webp",
+  },
 ];

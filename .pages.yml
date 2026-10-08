@@ -1,0 +1,57 @@
+media:
+  label: 媒体
+  input: public/uploads
+  output: /uploads
+
+content:
+  - name: blog
+    label: 文章
+    type: collection
+    path: src/content/blog
+    filename: "{primary}.md"
+    view:
+      fields: [title, pubDate, collection]
+      primary: title
+      sort:
+        - pubDate
+      default:
+        sort: pubDate
+        order: desc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+      - name: description
+        label: 摘要
+        type: text
+      - name: pubDate
+        label: 发布日期
+        type: date
+      - name: updatedDate
+        label: 更新时间
+        type: date
+        required: false
+      - name: heroImage
+        label: 封面图
+        type: image
+        required: false
+      - name: collection
+        label: 专题
+        type: string
+        required: false
+      - name: collectionDescription
+        label: 专题描述
+        type: text
+        required: false
+      - name: tags
+        label: 标签
+        type: string
+        list: true
+        required: false
+      - name: enableComments
+        label: 启用评论
+        type: boolean
+        required: false
+      - name: body
+        label: 正文
+        type: rich-text

@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import type { MarkdownHeading } from "astro";
 import type { CollectionEntry } from "astro:content";
 import Badge from "../components/Badge.astro";
@@ -42,7 +41,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], body = "
     <div class="grid min-w-0 gap-box md:col-start-2">
       {heroImage && (
         <Box>
-          <Image class="w-full" width={840} height={420} src={heroImage} alt={title} />
+          <img class="w-full" src={withBase(heroImage)} width="840" height="420" alt={title} />
         </Box>
       )}
       <Prose><slot /></Prose>

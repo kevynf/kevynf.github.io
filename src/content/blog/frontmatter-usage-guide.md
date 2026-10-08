@@ -42,7 +42,7 @@ collectionDescription: LogFlow Theme 主题设计、实现与迭代实践
 tags:
   - Astro
   - Frontmatter
-heroImage: ./cover.png
+heroImage: /uploads/cover.png
 ---
 ```
 
@@ -94,9 +94,9 @@ heroImage: ./cover.png
 
 ### heroImage
 
-- 类型：本地图片的相对路径（可选；构建后解析为 `ImageMetadata`）
+- 类型：站点图片 URL（可选），由 Pages CMS 上传到 `public/uploads/`
 - 作用：文章页头图，并输出到 Open Graph/Twitter 元信息。
-- 建议：使用项目可处理的本地图片资源，并保持合适的横向比例。
+- 建议：使用 CMS 的封面图字段上传图片，并保持合适的横向比例。
 
 ### enableComments
 
@@ -132,7 +132,7 @@ collection:
 collectionDescription: 
 tags:
   - 
-heroImage: ./cover.png
+heroImage: /uploads/cover.png
 enableComments: true
 ---
 ```
