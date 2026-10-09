@@ -35,7 +35,7 @@ export const SITE_DESCRIPTION = "Welcome to my Blog!";
 生产环境的完整站点地址，用于 Astro 的 `site` 配置、canonical URL、sitemap、RSS 和友链交换信息。不要添加末尾斜杠。
 
 ```ts
-export const SITE_URL = "https://kevynf.github.io";
+export const SITE_URL = "https://blog.kevy.net";
 ```
 
 ### COPYRIGHT_NAME
@@ -189,7 +189,7 @@ export const SEARCH = {
 export const FRIEND_LINKS = [
   {
     name: "K3vyn",
-    link: "https://kevynf.github.io",
+    link: "https://blog.kevy.net",
     avatar: "/avatar.svg",
     desc: "Facciamo una pausa?",
   },
