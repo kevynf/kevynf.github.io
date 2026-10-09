@@ -10,8 +10,22 @@ export default defineConfig({
 	site: process.env.SITE_URL ?? SITE_URL,
 	base: process.env.BASE_PATH ?? '/',
 	integrations: [mdx(), sitemap()],
+	security: {
+		allowedDomains: [{ hostname: 'giscus.app', protocol: 'https' }],
+	},
 	vite: {
 		plugins: [tailwindcss()],
+		// Giscus loads custom themes from its cross-origin iframe during local preview.
+		server: {
+			headers: {
+				'Access-Control-Allow-Origin': '*',
+			},
+		},
+		preview: {
+			headers: {
+				'Access-Control-Allow-Origin': '*',
+			},
+		},
 	},
 	prefetch: true,
 	markdown: {

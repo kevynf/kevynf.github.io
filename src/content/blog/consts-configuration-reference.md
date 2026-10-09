@@ -19,7 +19,7 @@ tags:
 站点名称，用于 Header、首页标题、浏览器标题和 RSS。
 
 ```ts
-export const SITE_TITLE = "K3vynf's Blog";
+export const SITE_TITLE = "K3vyn's Blog";
 ```
 
 ### SITE_DESCRIPTION
@@ -43,7 +43,7 @@ export const SITE_URL = "https://kevynf.github.io";
 页脚版权名称，可以填写个人名、组织名或品牌名。
 
 ```ts
-export const COPYRIGHT_NAME = "K3vynf";
+export const COPYRIGHT_NAME = "K3vyn";
 ```
 
 ## 页面标题与概述
@@ -188,7 +188,7 @@ export const SEARCH = {
 ```ts
 export const FRIEND_LINKS = [
   {
-    name: "K3vynf",
+    name: "K3vyn",
     link: "https://kevynf.github.io",
     avatar: "/avatar.svg",
     desc: "Facciamo una pausa?",

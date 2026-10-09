@@ -1,8 +1,8 @@
 // 站点基础信息，用于页头、SEO、RSS、站点地图和页脚。
-export const SITE_TITLE = "K3vynf's Blog";
+export const SITE_TITLE = "K3vyn's Blog";
 export const SITE_DESCRIPTION = "Welcome to my Blog!";
-export const SITE_URL = "https://kevynf.github.io";
-export const COPYRIGHT_NAME = "K3vynf";
+export const SITE_URL = "https://blog.kevy.net";
+export const COPYRIGHT_NAME = "K3vyn";
 
 // 静态页面标题和描述，同时用于页面标题区域和 SEO 描述。
 export const PAGE_COPY = {

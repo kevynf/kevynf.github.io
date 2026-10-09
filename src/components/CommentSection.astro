@@ -16,10 +16,13 @@ const isConfigured =
 	COMMENTS.repo.trim().length > 0 &&
 	COMMENTS.repoId.trim().length > 0 &&
 	COMMENTS.categoryId.trim().length > 0;
-const resolveTheme = (theme: string) =>
-	theme.startsWith('/') ? new URL(withBase(theme), Astro.site).href : theme;
-const themeLight = resolveTheme(COMMENTS.themeLight ?? 'light');
-const themeDark = resolveTheme(COMMENTS.themeDark ?? 'dark');
+// Keep custom themes as same-origin paths so custom domains resolve them at runtime.
+const themeLight = COMMENTS.themeLight?.startsWith('/')
+	? withBase(COMMENTS.themeLight)
+	: (COMMENTS.themeLight ?? 'light');
+const themeDark = COMMENTS.themeDark?.startsWith('/')
+	? withBase(COMMENTS.themeDark)
+	: (COMMENTS.themeDark ?? 'dark');
 ---
 
 {
@@ -56,8 +59,10 @@ const themeDark = resolveTheme(COMMENTS.themeDark ?? 'dark');
 							const lightTheme = commentsContainer?.getAttribute('data-theme-light') || 'light';
 							const darkTheme = commentsContainer?.getAttribute('data-theme-dark') || 'dark';
 
-							const getTheme = () =>
-								document.documentElement.classList.contains('dark') ? darkTheme : lightTheme;
+							const getTheme = () => {
+								const theme = document.documentElement.classList.contains('dark') ? darkTheme : lightTheme;
+								return theme.startsWith('/') ? new URL(theme, window.location.origin).href : theme;
+							};
 
 							const script = document.createElement('script');
 							script.src = 'https://giscus.app/client.js';
